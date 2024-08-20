@@ -1,15 +1,18 @@
 document.getElementById('dateNow').valueAsDate = new Date();
 document.getElementById('dateNow2').valueAsDate = new Date();
 
-const formLocation = document.querySelector(".form__location"),
-    formLocationInner = document.querySelector(".form__location-inner"),
+const body = document.querySelector(".body"),
+    headerNavigation = body.querySelector(".header__nav"),
+    headerButtonMenu = body.querySelector(".header__button-menu"),
+    formLocation = body.querySelector(".form__location"),
+    formLocationInner = body.querySelector(".form__location-inner"),
     locationOption = formLocation.querySelector(".location__option"),
     locationText = formLocation.querySelector(".location__text"),
     locationUK = formLocation.querySelector(".location-uk"),
     locationRU = formLocation.querySelector(".location-ru"),
     locationUS = formLocation.querySelector(".location-us"),
-    formMembers = document.querySelector(".form__members"),
-    formMembersInner = document.querySelector(".form__members-inner"),
+    formMembers = body.querySelector(".form__members"),
+    formMembersInner = body.querySelector(".form__members-inner"),
     membersOption = formMembers.querySelector(".members__option"),
     membersText = formMembers.querySelector(".members__text"),
     members4 = formMembers.querySelector(".members-4"),
@@ -19,9 +22,15 @@ const formLocation = document.querySelector(".form__location"),
     membersChoiceList = formMembers.querySelector(".choice-list");
 
 
-formLocation.addEventListener("click", () => {
-    locationChoiceList.classList.toggle("active");
+headerButtonMenu.addEventListener("click", () => {
+    body.classList.toggle("disabled-scroll");
+    headerNavigation.classList.toggle("header__nav--active");
+    headerButtonMenu.classList.toggle("header__button-menu--active");
+})
+
+formLocationInner.addEventListener("click", () => {
     formLocationInner.classList.toggle("active-inner");
+    locationChoiceList.classList.toggle("active");
 })
 
 locationUK.addEventListener("click", () => {
@@ -38,9 +47,9 @@ locationUS.addEventListener("click", () => {
 })
 
 
-formMembers.addEventListener("click", () => {
-    membersChoiceList.classList.toggle("active");
+formMembersInner.addEventListener("click", () => {
     formMembersInner.classList.toggle("active-inner");
+    membersChoiceList.classList.toggle("active");
 })
 
 members4.addEventListener("click", () => {
@@ -68,3 +77,55 @@ document.addEventListener("mouseup", function(event) {
         formMembersInner.classList.remove("active-inner");
     }
 })
+
+
+new Swiper(".popular__card-wrapper", {
+    spaceBetween: 20,
+    freeMode: true,
+    grabCursor: true,
+    slidesPerView: 3,
+
+    keyboard: {
+        enabled: true,
+    },
+
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: true,
+    },
+
+    breakpoints: {
+        1200: {
+            enabled: false,
+        },
+
+        900: {
+            enabled: true,
+            slidesPerView: 2.25,
+        },
+
+        800: {
+            slidesPerView: 2,
+        },
+
+        700: {
+            slidesPerView: 1.75,
+        },
+
+        600: {
+            slidesPerView: 1.5,
+        },
+
+        500: {
+            slidesPerView: 1.25,
+        },
+
+        400: {
+            slidesPerView: 1,
+        },
+
+        1: {
+            slidesPerView: 1,
+        },
+    },
+});
